@@ -31,23 +31,23 @@ if ! $OMZ_INSTALLED; then
     echo
 fi
 
-if $OMZ_INSTALLED; then
-    omz_plugins=(
-        npm
-        macos
-        zsh-autosuggestions
-    )
-
-    echo "Enabling the following oh-my-zsh plugins:"
-    printf "  %s\n" "${omz_plugins[@]}"
-    printf "Continue? [Y/n] "
-    if read_confirm; then
-        echo "Installing zsh-autosuggestions..."
-        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-        eval "omz plugin enable ${omz_plugins[@]}"
-    fi
-fi
-echo
+# TODO
+# if $OMZ_INSTALLED; then
+#     omz_plugins=(
+#         npm
+#         macos
+#         zsh-autosuggestions
+#     )
+#     echo "Enabling the following oh-my-zsh plugins:"
+#     printf "  %s\n" "${omz_plugins[@]}"
+#     printf "Continue? [Y/n] "
+#     if read_confirm; then
+#         echo "Installing zsh-autosuggestions..."
+#         git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+#         omz plugin enable "${omz_plugins[@]}"
+#     fi
+# fi
+# echo
 
 # Check brew
 BREW_INSTALLED=$(command -v brew &> /dev/null)
