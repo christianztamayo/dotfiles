@@ -41,6 +41,7 @@ if $OMZ_INSTALLED; then
         fi
         omz plugin enable "${omz_plugins[@]}"
         omz theme set agnoster
+        OMZ_AGNOSTER_THEME_SET=1
     fi
 fi
 echo
@@ -150,4 +151,8 @@ source \"$(pwd)/zshrc\"" >> ~/.zshrc
     echo "Added custom aliases to ~/.zshrc"
 fi
 
-echo "Done!"
+echo "Done! 🎉"
+
+if [[ -n $OMZ_AGNOSTER_THEME_SET ]]; then
+    echo "Don't forget to install the pre-patched fonts on your system to properly render the omz theme"
+fi
