@@ -30,19 +30,20 @@ if ! $BREW_INSTALLED; then
 fi
 
 if $BREW_INSTALLED; then
-    cat << EOF
+    brew_packages=(
+        bat
+        diff-so-fancy
+        git
+        git-gui
+        the_silver_searcher
+        tig
+    )
 
-Installing the following brew packages:
-    bat
-    diff-so-fancy
-    git
-    git-gui
-    the_silver_searcher
-    tig
-EOF
+    echo "Installing the following brew packages:"
+    printf "  %s\n" "${brew_packages[@]}"
     printf "Continue? [Y/n] "
     if read_confirm; then
-        brew install bat diff-so-fancy git git-gui the_silver_searcher tig
+        eval "brew install ${brew_packages[@]}"
     fi
 fi
 echo
