@@ -1,16 +1,10 @@
-#!/bin/bash
+#!/bin/zsh
 
 function read_confirm() {
-    if [[ -n $ZSH_VERSION ]]; then
-        read -rsq confirm
-    else
-        read -rsn1 confirm
-    fi
+    printf "${1:-"Continue?"} [Y/n] "
+    read -sk1 confirm
     echo
-    if [[ $confirm == "y" || -z $confirm ]]; then
-        return 0
-    fi
-    return 1
+    [[ $confirm == "y" || $confirm == $'\n' ]] && true || false
 }
 
 # ---------------------------- Start ----------------------------
@@ -24,8 +18,7 @@ fi
 # Install oh-my-zsh
 OMZ_INSTALLED=$(test -d ~/.oh-my-zsh)
 if ! $OMZ_INSTALLED; then
-    printf "Install oh-my-zsh (https://github.com/ohmyzsh/ohmyzsh)? [Y/n] "
-    if read_confirm; then
+    if read_confirm "Install oh-my-zsh (https://github.com/ohmyzsh/ohmyzsh)?"; then
         sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     fi
     echo
@@ -40,7 +33,6 @@ fi
 #     )
 #     echo "Enabling the following oh-my-zsh plugins:"
 #     printf "  %s\n" "${omz_plugins[@]}"
-#     printf "Continue? [Y/n] "
 #     if read_confirm; then
 #         echo "Installing zsh-autosuggestions..."
 #         git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -53,13 +45,12 @@ fi
 BREW_INSTALLED=$(command -v brew &> /dev/null)
 
 if ! $BREW_INSTALLED; then
-    printf "brew not found. Install? [Y/n] "
-    if read_confirm; then
+    if read_confirm "brew not found. Install?"; then
         echo "Installing brew (https://brew.sh/)"
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
         # brew shellenv for Apple Silicon
-        if [[ $(uname -p) == 'arm' ]]; then
+        if [[ $(uname -p) == "arm" ]]; then
             echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
         fi
 
@@ -81,7 +72,6 @@ if $BREW_INSTALLED; then
 
     echo "Installing the following brew packages:"
     printf "  %s\n" "${brew_packages[@]}"
-    printf "Continue? [Y/n] "
     if read_confirm; then
         eval "brew install ${brew_packages[@]}"
     fi
@@ -128,25 +118,21 @@ COMMAND="    # basic config
 echo "Running the following commands:"
 echo "$COMMAND"
 
-printf "Continue? [Y/n] "
 if read_confirm; then
     eval "$COMMAND"
 fi
 echo
 
 # NVM
-printf "Install NVM? [Y/n] "
-if read_confirm; then
+if read_confirm "Install NVM?"; then
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
-    printf "Install latest Node LTS? [Y/n] "
-    if read_confirm; then
+    if read_confirm "Install latest Node LTS?"; then
         nvm install --lts
     fi
     echo
 
-    printf "Enable Corepack? (enables yarn and pnpm) [Y/n] "
-    if read_confirm; then
+    if read_confirm "Enable Corepack? (enables yarn and pnpm)"; then
         corepack enable
     fi
     echo
