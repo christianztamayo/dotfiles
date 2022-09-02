@@ -22,13 +22,32 @@ if [[ ! $(xcode-select -p 1>/dev/null;echo $?) ]]; then
 fi
 
 # Install oh-my-zsh
-if [ ! -d ~/.oh-my-zsh ]; then
+OMZ_INSTALLED=$(test -d ~/.oh-my-zsh)
+if ! $OMZ_INSTALLED; then
     printf "Install oh-my-zsh (https://github.com/ohmyzsh/ohmyzsh)? [Y/n] "
     if read_confirm; then
         sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     fi
     echo
 fi
+
+if $OMZ_INSTALLED; then
+    omz_plugins=(
+        npm
+        macos
+        zsh-autosuggestions
+    )
+
+    echo "Enabling the following oh-my-zsh plugins:"
+    printf "  %s\n" "${omz_plugins[@]}"
+    printf "Continue? [Y/n] "
+    if read_confirm; then
+        echo "Installing zsh-autosuggestions..."
+        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        eval "omz plugin enable ${omz_plugins[@]}"
+    fi
+fi
+echo
 
 # Check brew
 BREW_INSTALLED=$(command -v brew &> /dev/null)
