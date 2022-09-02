@@ -127,3 +127,22 @@ printf "Continue? [Y/n] "
 if read_confirm; then
     eval "$COMMAND"
 fi
+echo
+
+# NVM
+printf "Install NVM? [Y/n] "
+if read_confirm; then
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+    printf "Install latest Node LTS? [Y/n] "
+    if read_confirm; then
+        nvm install --lts
+    fi
+    echo
+
+    printf "Enable Corepack? (enables yarn and pnpm) [Y/n] "
+    if read_confirm; then
+        corepack enable
+    fi
+    echo
+fi
