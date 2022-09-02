@@ -10,7 +10,10 @@ function read_confirm() {
 # ---------------------------- Start ----------------------------
 
 # Install Xcode command line tools
-if [[ ! $(xcode-select -p 1>/dev/null;echo $?) ]]; then
+if [[ ! $(
+    xcode-select -p 1>/dev/null
+    echo $?
+) ]]; then
     xcode-select --install
     echo
 fi
@@ -47,7 +50,7 @@ fi
 echo
 
 # Check brew
-BREW_INSTALLED=$(command -v brew &> /dev/null)
+BREW_INSTALLED=$(command -v brew &>/dev/null)
 
 if ! $BREW_INSTALLED; then
     if read_confirm "brew not found. Install?"; then
@@ -56,7 +59,7 @@ if ! $BREW_INSTALLED; then
 
         # brew shellenv for Apple Silicon
         if [[ $(uname -p) == "arm" ]]; then
-            echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+            echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>~/.zprofile
         fi
 
         BREW_INSTALLED=true
@@ -87,9 +90,11 @@ echo
 current_git_user="$(git config user.name)"
 current_git_email="$(git config user.email)"
 
-printf "Git User Name (current: $current_git_user): "; read fullname
+printf "Git User Name (current: $current_git_user): "
+read fullname
 fullname=${fullname:-$current_git_user}
-printf "Git Email (current: $current_git_email): "; read email
+printf "Git Email (current: $current_git_email): "
+read email
 email=${email:-$current_git_email}
 echo
 
@@ -146,7 +151,7 @@ fi
 # Aliases
 if ! grep -q "dotfiles/zshrc" ~/.zshrc; then
     echo "
-source \"$(pwd)/zshrc\"" >> ~/.zshrc
+source \"$(pwd)/zshrc\"" >>~/.zshrc
 
     echo "Added custom aliases to ~/.zshrc"
 fi
