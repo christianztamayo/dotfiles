@@ -43,8 +43,17 @@ if $OMZ_INSTALLED; then
             git clone https://github.com/zsh-users/zsh-autosuggestions $autosuggestions_path
         fi
         omz plugin enable "${omz_plugins[@]}"
+
+        # Agnoster theme
         omz theme set agnoster
         OMZ_AGNOSTER_THEME_SET=1
+        if ! grep -q "prompt_context(){}" ~/.zshrc; then
+            echo "
+# Remove user@hostname from prompt with agnoster theme
+prompt_context(){}" >>~/.zshrc
+
+            echo "Added custom aliases to ~/.zshrc"
+        fi
     fi
 fi
 echo
