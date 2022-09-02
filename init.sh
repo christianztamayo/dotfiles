@@ -57,6 +57,12 @@ if ! $BREW_INSTALLED; then
     if read_confirm; then
         echo "Installing brew (https://brew.sh/)"
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+        # brew shellenv for Apple Silicon
+        if [[ $(uname -p) == 'arm' ]]; then
+            echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+        fi
+
         BREW_INSTALLED=true
     else
         echo "Not installing brew"
