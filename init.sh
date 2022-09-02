@@ -89,8 +89,13 @@ fi
 echo
 
 # Get basic info
-printf "Full Name (git): "; read fullname
-printf "Email (git): "; read email
+current_git_user="$(git config user.name)"
+current_git_email="$(git config user.email)"
+
+printf "Git User Name (current: $current_git_user): "; read fullname
+fullname=${fullname:-$current_git_user}
+printf "Git Email (current: $current_git_email): "; read email
+email=${email:-$current_git_email}
 echo
 
 COMMAND="    # basic config
