@@ -151,3 +151,13 @@ if read_confirm; then
     fi
     echo
 fi
+
+# Aliases
+if ! grep -q "dotfiles/zshrc" ~/.zshrc; then
+    echo "
+source \"$(pwd)/zshrc\"" >> ~/.zshrc
+
+    echo "Added custom aliases to ~/.zshrc"
+fi
+
+echo "Done!"
