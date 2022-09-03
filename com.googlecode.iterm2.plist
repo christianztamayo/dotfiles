@@ -784,8 +784,12 @@
 	</dict>
 	<key>Default Bookmark Guid</key>
 	<string>B67AF56F-E0D5-486C-AAF9-70513673B9FC</string>
-	<key>DimOnlyText</key>
+	<key>DimBackgroundWindows</key>
 	<false/>
+	<key>DimInactiveSplitPanes</key>
+	<true/>
+	<key>DimOnlyText</key>
+	<true/>
 	<key>FlashTabBarInFullscreen</key>
 	<false/>
 	<key>HapticFeedbackForEsc</key>
@@ -1718,6 +1722,8 @@
 	</dict>
 	<key>SoundForEsc</key>
 	<false/>
+	<key>SplitPaneDimmingAmount</key>
+	<real>0.59999999999999998</real>
 	<key>StatusBarPosition</key>
 	<integer>1</integer>
 	<key>SwitchPaneModifier</key>
