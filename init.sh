@@ -81,6 +81,7 @@ if $BREW_INSTALLED; then
     brew_packages=(
         bat
         diff-so-fancy
+        findutils
         git
         git-gui
         the_silver_searcher
