@@ -18,3 +18,15 @@ alias gatekeeper_bypass="sudo xattr -rd com.apple.quarantine"
 alias mp3="youtube-dl -o \"%(title)s-%(id)s.%(ext)s\" -x --audio-format mp3 --embed-thumbnail"
 alias aac="youtube-dl -o \"%(title)s-%(id)s.%(ext)s\" -x --audio-format aac --embed-thumbnail"
 alias notify="osascript -e 'display notification \"Task Done\" with title \"Shell\" sound name \"Glass\"'"
+
+# Remove user@hostname from agnoster theme
+prompt_context(){}
+
+# spaceship theme overrides
+SPACESHIP_TIME_SHOW=true
+SPACESHIP_PACKAGE_SHOW=false
+SPACESHIP_DIR_TRUNC_REPO=false
+SPACESHIP_PREFIX="· "
+SPACESHIP_NODE_PREFIX=$SPACESHIP_PREFIX
+SPACESHIP_DOCKER_PREFIX=$SPACESHIP_PREFIX
+SPACESHIP_GIT_PREFIX=$SPACESHIP_PREFIX

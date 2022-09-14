@@ -65,12 +65,6 @@ if ! $BREW_INSTALLED; then
     if read_confirm "brew not found. Install?"; then
         echo "Installing brew (https://brew.sh/)"
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-        # brew shellenv for Apple Silicon
-        if [[ $(uname -p) == "arm" ]]; then
-            echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>~/.zprofile
-        fi
-
         BREW_INSTALLED=true
     else
         echo "Not installing brew"
@@ -149,12 +143,15 @@ if read_confirm "Install NVM?"; then
     echo
 fi
 
-# Aliases
+# Link zshrc and zprofile
 if ! grep -q "dotfiles/zshrc" ~/.zshrc; then
-    echo "
-source \"$(pwd)/zshrc\"" >>~/.zshrc
+    echo "source \"$(pwd)/zshrc\"" >>~/.zshrc
+    echo "Added bootstrapping scripts to ~/.zshrc"
+fi
 
-    echo "Added custom aliases to ~/.zshrc"
+if ! grep -q "dotfiles/zprofile" ~/.zprofile; then
+    echo "source \"$(pwd)/zprofile\"" >>~/.zprofile
+    echo "Added bootstrapping scripts to ~/.zprofile"
 fi
 
 echo "Done! 🎉"
