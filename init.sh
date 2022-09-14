@@ -78,20 +78,11 @@ if ! $BREW_INSTALLED; then
 fi
 
 if $BREW_INSTALLED; then
-    brew_packages=(
-        bat
-        diff-so-fancy
-        findutils
-        git
-        git-gui
-        the_silver_searcher
-        tig
-    )
-
-    echo "Installing the following brew packages:"
+    echo "Applying Brewfile:"
+    cat Brewfile
     printf "  %s\n" "${brew_packages[@]}"
     if read_confirm; then
-        eval "brew install ${brew_packages[@]}"
+        brew bundle install
     fi
 fi
 echo
