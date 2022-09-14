@@ -6,16 +6,6 @@
 	<array/>
 	<key>AdjustWindowForFontSizeChange</key>
 	<false/>
-	<key>AppleAntiAliasingThreshold</key>
-	<integer>1</integer>
-	<key>ApplePressAndHoldEnabled</key>
-	<false/>
-	<key>AppleScrollAnimationEnabled</key>
-	<integer>0</integer>
-	<key>AppleSmoothFixedFontsSizeThreshold</key>
-	<integer>1</integer>
-	<key>AppleWindowTabbingMode</key>
-	<string>manual</string>
 	<key>CopySelection</key>
 	<false/>
 	<key>Custom Color Presets</key>
@@ -1636,13 +1626,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.20521116256713867</real>
+				<real>1</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.20520767569541931</real>
+				<real>0.0</real>
 				<key>Red Component</key>
-				<real>0.20521381497383118</real>
+				<real>1</real>
 			</dict>
 			<key>Semantic History</key>
 			<dict>
@@ -1727,7 +1717,7 @@
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
-	<real>0.59999999999999998</real>
+	<real>0.45000000000000001</real>
 	<key>StatusBarPosition</key>
 	<integer>1</integer>
 	<key>SwitchPaneModifier</key>
