@@ -129,7 +129,9 @@ fi
 echo
 
 # NVM
-if read_confirm "Install NVM?"; then
+NVM_INSTALLED=$(test -d ~/.nvm)
+
+if ! $NVM_INSTALLED && read_confirm "Install NVM?"; then
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
     if read_confirm "Install latest Node LTS?"; then
