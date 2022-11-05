@@ -7,7 +7,7 @@
 *.orig
 
 # Created by git when using merge tools for conflicts
-*.BACKUP.*
+# *.BACKUP.*
 *.BASE.*
 *.LOCAL.*
 *.REMOTE.*
@@ -205,7 +205,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
@@ -242,8 +242,8 @@ coverage.xml
 cover/
 
 # Translations
-*.mo
-*.pot
+# *.mo
+# *.pot
 
 # Django stuff:
 local_settings.py
@@ -386,12 +386,6 @@ tags
 # Ignore all local history of files
 .history
 .ionide
-
-# Support for Project snippet scope
-.vscode/*.code-snippets
-
-# Ignore code-workspaces
-*.code-workspace
 
 ### Zsh ###
 # Zsh compiled script + zrecompile backup
