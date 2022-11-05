@@ -44,6 +44,13 @@ if $OMZ_INSTALLED; then
         fi
         omz plugin enable "${omz_plugins[@]}"
 
+	syntax_highlighting_path=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        if [[ ! -d $syntax_highlighting_path ]]; then
+            echo "Installing zsh-syntax-highlighting..."
+            git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $syntax_highlighting_path
+        fi
+        omz plugin enable "${omz_plugins[@]}"
+
         # Agnoster theme
         omz theme set agnoster
         OMZ_AGNOSTER_THEME_SET=1
