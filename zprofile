@@ -1,3 +1,6 @@
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+
 # Brew
 HOMEBREW_PREFIX="/usr/local"
 # On ARM macOS, this script installs to /opt/homebrew only
